@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Proyección de Fondos de Reserva</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <div class="title">Proyección de Fondos de Reserva</div>
+
+  <div class="grid">
+
+    <!-- PANEL IZQUIERDO -->
+    <div class="card">
+
+      <label>Sueldo mensual</label>
+      <input type="number" id="sueldo" value="1000" min="1" step="0.01">
+
+      <label>Años a proyectar</label>
+      <input type="range" id="anios" min="3" max="25" value="3">
+      <div id="anios_valor">3 años</div>
+
+      <label>Fecha de inicio</label>
+      <input type="date" id="fecha_inicio">
+
+      <button id="calcular">Calcular proyección</button>
+
+      <div class="note">
+        La proyección se basa en tasas referenciales definidas institucionalmente.
+      </div>
+
+    </div>
+
+    <!-- PANEL DERECHO -->
+    <div>
+
+      <div class="metrics-row">
+
+        <div class="metricCard">
+          <div class="metricLabel">Tasa actual IESS</div>
+          <div class="metricValue" id="tasa_iess_txt">—</div>
+        </div>
+
+        <div class="metricCard">
+          <div class="metricLabel">Aporte mensual</div>
+          <div class="metricValue" id="aporte_txt">—</div>
+        </div>
+
+        <div class="metricCard">
+          <div class="metricLabel">Fecha fin</div>
+          <div class="metricValue" id="fecha_fin_txt">—</div>
+        </div>
+
+      </div>
+
+      <div class="metrics-row">
+
+        <div class="metricCard">
+          <div class="metricLabel">Total aportado</div>
+          <div class="metricValue" id="aportado_txt">—</div>
+        </div>
+
+        <div class="metricCard">
+          <div class="metricLabel">Rendimiento</div>
+          <div class="metricValue" id="rendimiento_txt">—</div>
+        </div>
+
+      </div>
+
+      <div class="metrics-row">
+
+        <div class="metricCard">
+          <div class="metricLabel">Total IESS</div>
+          <div class="metricValue" id="total_txt">—</div>
+        </div>
+
+        <div class="metricCard">
+          <div class="metricLabel">Total competencia</div>
+          <div class="metricValue" id="total_comp_txt">—</div>
+        </div>
+
+        <div class="metricCard">
+          <div class="metricLabel">Ventaja IESS</div>
+          <div class="metricValue" id="ventaja_txt">—</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- TEXTO INSTITUCIONAL -->
+  <div class="infoBox">
+    - Los Fondos de Reserva son recursos de propiedad individual del afiliado administrados por el IESS.<br>
+    - Están sujetos a control de la Superintendencia de Bancos y la Contraloría General del Estado.<br>
+    - Los rendimientos se calculan bajo interés compuesto conforme lineamientos del BIESS.
+  </div>
+
+  <!-- GRÁFICO -->
+  <div class="card">
+    <h3>Comparación de acumulado</h3>
+    <canvas id="grafico"></canvas>
+  </div>
+
+  <!-- TABLA -->
+  <div class="card">
+    <h3>Detalle</h3>
+    <table id="tabla">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Fecha</th>
+          <th>Aporte</th>
+          <th>Rendimiento</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div class="note" id="msg"></div>
+
+</div>
+
+<!-- JS -->
+<script src="script.js"></script>
+
+</body>
+</html>
